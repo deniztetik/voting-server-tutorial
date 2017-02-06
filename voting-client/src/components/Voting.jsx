@@ -1,30 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Voting extends Component{
-  getPair() {
+export default React.createClass({
+  getPair: function() {
     return this.props.pair || [];
-  }
-  isDisabled() {
-    return !!this.props.hasVoted;
-  }
-  hasVotedFor(entry) {
-    return this.props.hasVoted === "boo";
-  }
-  render() {
-    return (
-      <div className="voting">
+  },
+  render: function() {
+    return <div className="voting">
       {this.getPair().map(entry =>
-        <button key={entry}
-                disabled={this.isDisabled()}
-                onClick={() => this.props.vote(entry)}>
+        <button key={entry}>
           <h1>{entry}</h1>
-          {this.hasVotedFor(entry) ?
-            <div className="label">Voted</div> :
-            null
-          }
         </button>
       )}
-    </div>
-    );
+    </div>;
   }
-}
+});
